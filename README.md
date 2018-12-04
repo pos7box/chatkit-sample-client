@@ -1,44 +1,67 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Chatkit Sample Client
 
-## Available Scripts
+> Slack clone powered by [Chatkit](https://pusher.com/chatkit). See it in action here: [https://zmarkan.github.io/chatkit-sample-client](https://zmarkan.github.io/chatkit-sample-client).
+This project was forked from [React Slack Clone](https://github.com/pusher/react-slack-clone).
 
-In the project directory, you can run:
+This is a static, single page web app bootstrapped with [create-react-app](https://github.com/facebookincubator/create-react-app) for ease of setup, distribution and development. It is a thin UI wrapper around the [pusher-chatkit-client](https://github.com/pusher/chatkit-client-js) library to demonstrate how different features can work together to form a compelling real-time chat client with various potential product applications.
 
-### `npm start`
+There is also a corresponding serverside component at [github.com/zmarkan/chatkit-sample-server](https://github.com/zmarkan/chatkit-sample-server), that is also deployed on Glitch.com, as well as rules deployed in Auth0 that create users in Chatkit and make them join rooms.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+The Chatkit SDK allows you to implement features you would expect from a chat client. These include:
 
-### `npm test`
+* 📝 Public and private chat rooms
+* 📡 Realtime sending and receiving of messages
+* 📦 Rich media attachments (drag and drop)
+* 💬 Typing and presence indicators
+* 📚 Read message cursors
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Components
 
-### `npm run build`
+The demo attempts to be feature complete according to documentation [here](https://docs.pusher.com/chatkit/reference/javascript). Feature requests should be made via issues or pull requests to this repository.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* CreateMessageForm - to send a message with a textual body and trigger typing indicators.
+* CreateRoomForm - to create a new room and join it upon creation.
+* FileInput - to send a message with a rich media attachment.
+* Message - to render out a message that potentially includes an attachment.
+* MessageList - to render a list of messages from a key value store.
+* RoomHeader - to display useful information about a given room.
+* RoomList - to render a list of rooms which can be subscribed to by the current user.
+* TypingIndicator - to signify to the user that another user is typing in a given room.
+* UserHeader - to display useful information about a given user.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+# Usage / Deployment 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Follow these steps to set up Chatkit and Auth0 and deploy everything on Github pages and Glitch.
 
-### `npm run eject`
+1. Sign up for [Chatkit](https://pusher.com/chatkit) and [Auth0](https://auth0.com), and create apps/instances in both.
+2. In the [Chatkit dashboard](https://dash.pusher.com/chatkit) use the console to create a new public room, and note the room ID.
+2. Go to [Glitch - Chatkit Sample Server](https://glitch.com/~zmarkan-chatkit-sample-server), and remix it (You might need to create a Glitch account first). This serves as our Chatkit authorizer and makes sure that all users exist in Auth0.
+3. In the Glitch project root, create a filed called `env`. Fill it with these values with the ones from your Chatkit and Auth0 dashboards:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```javascript
+export CHATKIT_INSTANCE_LOCATOR=""
+export CHATKIT_KEY=""
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+export AUTH0_DOMAIN=""
+export AUTH0_CLIENT_ID=""
+export AUTH0_CLIENT_SECRET=""
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. In [Auth0 dashboard's application settings](https://manage.auth0.com/#/applications) make sure the app is set up as a Single Page Application
+5. Add the following to the Allowed Callback URLs section in the Auth0 dashboard: `https://[YOUR_GITHUB_USERNAME].github.io/chatkit-sample-client` 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+6. Go to the Rules section in Auth0 dashboard, and update and add 2 rules - one for creating a Chatkit user after the first log in, and one to add that user to a room. As rules trigger after each log in, we need to make to make a condition that triggers only when login count is less than 1. You can copy the rules from [zmarkan/chatkit-sample-auth0-rules](https://github.com/zmarkan/chatkit-sample-auth0-rules).
 
-## Learn More
+7. Add the following values as the settings in your rules:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `chatkitInstanceLocator`
+- `chatkitSecret`
+- `chatkitRoomId`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+8. Fork this repository  (if you haven't yet) (chatkit-sample-client)
+9. Install the dependencies by running `npm install`
+10. Deploy the project to GitHub pages by running `npm run deploy`.
+11. Visit the deployed GitHub pages at: https://YOUR_GITHUB_USERNAME.github.io/chatkit-sample-client
+12. 🚀
