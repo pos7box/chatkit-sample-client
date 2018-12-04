@@ -37,8 +37,8 @@ Follow these steps to set up Chatkit and Auth0 and deploy everything on Github p
 
 1. Sign up for [Chatkit](https://pusher.com/chatkit) and [Auth0](https://auth0.com), and create apps/instances in both.
 2. In the [Chatkit dashboard](https://dash.pusher.com/chatkit) use the console to create a new public room, and note the room ID.
-2. Go to [Glitch - Chatkit Sample Server](https://glitch.com/~zmarkan-chatkit-sample-server), and remix it (You might need to create a Glitch account first). This serves as our Chatkit authorizer and makes sure that all users exist in Auth0.
-3. In the Glitch project root, create a filed called `env`. Fill it with these values with the ones from your Chatkit and Auth0 dashboards:
+3. Go to [Glitch - Chatkit Sample Server](https://glitch.com/~zmarkan-chatkit-sample-server), and remix it (You might need to create a Glitch account first). This serves as our Chatkit authorizer and makes sure that all users exist in Auth0.
+4. In the Glitch project root, create a filed called `env`. Fill it with these values with the ones from your Chatkit and Auth0 dashboards:
 
 ```javascript
 export CHATKIT_INSTANCE_LOCATOR=""
@@ -49,19 +49,19 @@ export AUTH0_CLIENT_ID=""
 export AUTH0_CLIENT_SECRET=""
 ```
 
-4. In [Auth0 dashboard's application settings](https://manage.auth0.com/#/applications) make sure the app is set up as a Single Page Application
-5. Add the following to the Allowed Callback URLs section in the Auth0 dashboard: `https://[YOUR_GITHUB_USERNAME].github.io/chatkit-sample-client` 
+5. In [Auth0 dashboard's application settings](https://manage.auth0.com/#/applications) make sure the app is set up as a Single Page Application
+6. Add the following to the Allowed Callback URLs section in the Auth0 dashboard: `https://[YOUR_GITHUB_USERNAME].github.io/chatkit-sample-client` 
 
-6. Go to the Rules section in Auth0 dashboard, and update and add 2 rules - one for creating a Chatkit user after the first log in, and one to add that user to a room. As rules trigger after each log in, we need to make to make a condition that triggers only when login count is less than 1. You can copy the rules from [zmarkan/chatkit-sample-auth0-rules](https://github.com/zmarkan/chatkit-sample-auth0-rules).
+7. Go to the Rules section in Auth0 dashboard, and update and add 2 rules - one for creating a Chatkit user after the first log in, and one to add that user to a room. As rules trigger after each log in, we need to make to make a condition that triggers only when login count is less than 1. You can copy the rules from [zmarkan/chatkit-sample-auth0-rules](https://github.com/zmarkan/chatkit-sample-auth0-rules).
 
-7. Add the following values as the settings in your rules:
+8. Add the following values as the settings in your rules:
 
 - `chatkitInstanceLocator`
 - `chatkitSecret`
 - `chatkitRoomId`
 
-8. Fork this repository  (if you haven't yet) (chatkit-sample-client)
-9. Install the dependencies by running `npm install`
-10. Deploy the project to GitHub pages by running `npm run deploy`.
-11. Visit the deployed GitHub pages at: https://YOUR_GITHUB_USERNAME.github.io/chatkit-sample-client
-12. 🚀
+9. Fork this repository  (if you haven't yet) (chatkit-sample-client)
+10. Install the dependencies by running `npm install`
+11. Deploy the project to GitHub pages by running `npm run deploy`.
+12. Visit the deployed GitHub pages at: https://YOUR_GITHUB_USERNAME.github.io/chatkit-sample-client
+13. 🚀
