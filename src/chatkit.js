@@ -1,9 +1,10 @@
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client'
+import { chatkitTokenProviderEndpoint, chatkitInstanceLocator } from './config'
 
 const credentials = {
   url: (accessToken) =>
-    `https://zmarkan-chatkit-sample-server.glitch.me/token?token=${accessToken}`,
-  instanceLocator: 'v1:us1:7954c374-f491-4c08-b71e-5abfc0a3dc89',
+    `${chatkitTokenProviderEndpoint}?token=${accessToken}`,
+  instanceLocator: chatkitInstanceLocator,
 }
 
 const { instanceLocator, url } = credentials

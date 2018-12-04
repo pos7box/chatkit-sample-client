@@ -1,14 +1,14 @@
-import auth0 from "auth0-js";
+import auth0 from "auth0-js"
 import jwtdecode from "jwt-decode"
+import { auth0Domain, auth0ClientID, auth0RedirectUri } from "../config"
 
 export default class Auth {
 
   auth0 = new auth0.WebAuth({
-    domain: 'pusher-chatkit-demo.auth0.com',
-    clientID: 'VF0kHM9szMj0aQGEfqafrdAKVwRb2a3Q',
-    redirectUri: "https://zmarkan.github.io/chatkit-sample-client",
+    domain: auth0Domain,
+    clientID: auth0ClientID,
+    redirectUri: auth0RedirectUri,
 
-    // redirectUri: "http://localhost:3000",
     responseType: "token id_token",
     scope: "openid email profile"
   });
