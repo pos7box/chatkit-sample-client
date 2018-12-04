@@ -51,7 +51,7 @@ export const RoomList = ({
             Icon(room.isPrivate ? 'lock' : 'public')
           )}
           <col->
-            <p>{room.name.replace(user.id, '')}</p>
+            <p>{room.name.includes(user.id) ? firstUser.name : room.name}</p>
             <span>{latestMessage && latestMessage.text}</span>
           </col->
           {room.id !== current.id && unreadCount ? (
