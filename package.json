@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@pusher/chatkit-client": "^1.1.2",
+    "@pusher/chatkit-server": "^1.0.4",
+    "auth0": "^2.14.0",
     "auth0-js": "^9.8.2",
     "gh-pages": "^2.0.1",
     "jwt-decode": "^2.2.0",
@@ -15,15 +17,19 @@
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
+    "babel-loader": "^8.0.4",
+    "netlify-lambda": "^1.1.1",
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && npm run build:lambda",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:lambda": "netlify-lambda -c webpack.functions.js serve src/lambda",
+    "build:lambda": "netlify-lambda -c webpack.functions.js build src/lambda"
   },
   "eslintConfig": {
     "extends": "react-app"
