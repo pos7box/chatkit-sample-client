@@ -2,7 +2,6 @@
   "name": "pusher-chatkit-demo-with-auth0",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://zmarkan.github.io/chatkit-sample-client",
   "dependencies": {
     "@pusher/chatkit-client": "^1.1.2",
     "auth0-js": "^9.8.2",
