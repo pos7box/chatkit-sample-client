@@ -1,11 +1,9 @@
 # Chatkit Sample Client
 
-> Slack clone powered by [Chatkit](https://pusher.com/chatkit). See it in action here: [https://zmarkan.github.io/chatkit-sample-client](https://zmarkan.github.io/chatkit-sample-client).
+> Slack clone powered by [Chatkit](https://pusher.com/chatkit). See it in action here: [chatkit-sample.netlify.com](https://chatkit-sample.netlify.com).
 This project was forked from [React Slack Clone](https://github.com/pusher/react-slack-clone).
 
 This is a static, single page web app bootstrapped with [create-react-app](https://github.com/facebookincubator/create-react-app) for ease of setup, distribution and development. It is a thin UI wrapper around the [pusher-chatkit-client](https://github.com/pusher/chatkit-client-js) library to demonstrate how different features can work together to form a compelling real-time chat client with various potential product applications.
-
-There is also a corresponding serverside component at [github.com/zmarkan/chatkit-sample-server](https://github.com/zmarkan/chatkit-sample-server), that is also deployed on Glitch.com, as well as rules deployed in Auth0 that create users in Chatkit and make them join rooms.
 
 ## Features
 
@@ -32,6 +30,8 @@ The demo attempts to be feature complete according to documentation [here](https
 * UserHeader - to display useful information about a given user.
 
 # Usage / Deployment 
+
+# NOTE: THIS PART IS OUT OF DATE - THE DEPLOYMENT IS ON NETLIFY NOW
 
 Follow these steps to set up Chatkit and Auth0 and deploy everything on Github pages and Glitch.
 
