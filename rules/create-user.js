@@ -1,4 +1,4 @@
-new function (user, context, callback) {
+(user, context, callback) => {
   
     if(context.stats.loginsCount > 1 || context.protocol === 'oauth2-refresh-token') {
       console.log("Ignoring the user creation step");
