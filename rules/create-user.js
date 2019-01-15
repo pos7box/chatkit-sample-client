@@ -26,13 +26,13 @@ function (user, context, callback){
   
     const jwtPayload = {
       instance: CHATKIT_INSTANCE_ID,
-      iss: `api_keys/${configuration.chatkitKeyId}`,
+      iss: `api_keys/${CHATKIT_KEY_ID}`,
       iat: nowSeconds,
       exp: nowSeconds +  minute,
       su:  true
     };
   
-    let token = jwt.sign(jwtPayload, configuration.chatkitKeySecret);
+    let token = jwt.sign(jwtPayload, CHATKIT_KEY_SECRET);
     console.log(token);
     
     const headers = {  
