@@ -31,28 +31,18 @@ The demo attempts to be feature complete according to documentation [here](https
 
 # Usage / Deployment 
 
-# NOTE: THIS PART IS OUT OF DATE - THE DEPLOYMENT IS ON NETLIFY NOW
+Follow these steps to set up Chatkit and Auth0 and deploy everything on Netlify.
 
-Follow these steps to set up Chatkit and Auth0 and deploy everything on Github pages and Glitch.
-
+0. Fork this repo.
 1. Sign up for [Chatkit](https://pusher.com/chatkit) and [Auth0](https://auth0.com), and create apps/instances in both.
 2. In the [Chatkit dashboard](https://dash.pusher.com/chatkit) use the console to create a new public room, and note the room ID.
-3. Go to [Glitch - Chatkit Sample Server](https://glitch.com/~zmarkan-chatkit-sample-server), and remix it (You might need to create a Glitch account first). This serves as our Chatkit authorizer and makes sure that all users exist in Auth0.
-4. In the Glitch project root, create a filed called `env`. Fill it with these values with the ones from your Chatkit and Auth0 dashboards:
-
-```javascript
-export CHATKIT_INSTANCE_LOCATOR=""
-export CHATKIT_KEY=""
-
-export AUTH0_DOMAIN=""
-export AUTH0_CLIENT_ID=""
-export AUTH0_CLIENT_SECRET=""
-```
-
+3. Go to [Netlify](https://netlify.com), and set up a new site there, pointing to your new fork.
+4. In Netlify site settings, set the build command as: `npm run predeploy`, and the publish directory as `build/`.
+6. Set up the following environment variables in Netlify, based on the keys and secrets from your Chatkit instance and Auth0 application: `CHATKIT_INSTANCE_LOCATOR`, `CHATKIT_KEY` `AUTH0_CLIENT_ID`, `AUTH0_CLIENT_SECRET`, `AUTH0_DOMAIN`.
+6. Enable lambda functions in Netlify, set functions directory as `./lambda`. This serves as our Chatkit authorizer that provides tokens to our applciation.
 5. In [Auth0 dashboard's application settings](https://manage.auth0.com/#/applications) make sure the app is set up as a Single Page Application
-6. Add the following to the Allowed Callback URLs section in the Auth0 dashboard: `https://[YOUR_GITHUB_USERNAME].github.io/chatkit-sample-client` 
-
-7. Go to the Rules section in Auth0 dashboard, and update and add 2 rules - one for creating a Chatkit user after the first log in, and one to add that user to a room. As rules trigger after each log in, we need to make to make a condition that triggers only when login count is less than 1. You can copy the rules from [zmarkan/chatkit-sample-auth0-rules](https://github.com/zmarkan/chatkit-sample-auth0-rules).
+6. Add the following to the Allowed Callback URLs section in the Auth0 dashboard: `https://[YOUR_NETLIFY_APP_NAME].netlify.com`
+7. Go to the Rules section in Auth0 dashboard, and update and add 2 rules - one for creating a Chatkit user after the first log in, and one to add that user to a room. As rules trigger after each log in, we need to make to make a condition that triggers only when login count is less than 1. You can copy the rules from [rules/create-user.js](https://github.com/zmarkan/chatkit-sample-client/blob/master/rules/create-user.js), and [rules/add-to-room.js](https://github.com/zmarkan/chatkit-sample-client/blob/master/rules/add-to-room.js).
 
 8. Add the following values as the settings in your rules:
 
@@ -60,8 +50,6 @@ export AUTH0_CLIENT_SECRET=""
 - `chatkitSecret`
 - `chatkitRoomId`
 
-9. Fork this repository  (if you haven't yet) (chatkit-sample-client)
-10. Install the dependencies by running `npm install`
-11. Deploy the project to GitHub pages by running `npm run deploy`.
-12. Visit the deployed GitHub pages at: https://YOUR_GITHUB_USERNAME.github.io/chatkit-sample-client
+9. Make a change, to trigger an update on Netlify (if it hasn't yet).
+10. Visit the deployed Netlify site at: https://YOUR_NETLIFY_SITE.netlif.com
 13. 🚀
