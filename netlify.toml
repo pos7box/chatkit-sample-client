@@ -1,5 +1,7 @@
 [build]
     functions = "lambda"
+    publish = "build/"
+    command = "npm run predeploy"
 
 [template.environment]
     CHATKIT_INSTANCE_LOCATOR = "Chatkit instance locator"
