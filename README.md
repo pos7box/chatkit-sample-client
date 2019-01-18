@@ -33,6 +33,9 @@ The demo attempts to be feature complete according to documentation [here](https
 
 Follow these steps to set up Chatkit and Auth0 and deploy everything on Netlify.
 
+<!-- Markdown snippet -->
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/zmarkan/chatkit-sample-client)
+
 0. Fork this repo.
 1. Sign up for [Chatkit](https://pusher.com/chatkit) and [Auth0](https://auth0.com), and create apps/instances in both.
 2. In the [Chatkit dashboard](https://dash.pusher.com/chatkit) use the console to create a new public room, and note the room ID.
