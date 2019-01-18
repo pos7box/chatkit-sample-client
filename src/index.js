@@ -143,13 +143,29 @@ class Main extends React.Component {
             x.name === options.user.id + this.state.user.id ||
             x.name === this.state.user.id + options.user.id
         )
-        exists
-          ? this.actions.joinRoom(exists)
-          : this.actions.createRoom({
-              name: this.state.user.id + options.user.id,
-              addUserIds: [options.user.id],
-              private: true,
-            })
+        console.log(`Exists: ${exists}`)
+        if(exists){
+          console.log("Room exists - will join")
+          this.actions.joinRoom(exists)
+
+        }
+        else {
+          console.log("Room doesn't exist - will create")
+          this.actions.createRoom({
+            name: this.state.user.id + options.user.id,
+            addUserIds: [options.user.id],
+            private: true,
+          })
+
+        }
+        // exists
+        //   ? {
+        //   }
+        //   : this.actions.createRoom({
+        //       name: this.state.user.id + options.user.id,
+        //       addUserIds: [options.user.id],
+        //       private: true,
+        //     })
       }
     },
 
