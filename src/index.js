@@ -119,10 +119,14 @@ class Main extends React.Component {
     joinRoom: room => {
       this.actions.setRoom(room)
       this.actions.subscribeToRoom(room)
+
+      let messagesInRoom = this.state.messages[room.id]
+      let lastMessage = messagesInRoom[messagesInRoom.length - 1]
+
       this.state.messages[room.id] &&
         this.actions.setCursor(
           room.id,
-          this.state.messages[room.id].pop().id
+          lastMessage.id
         )
     },
 
