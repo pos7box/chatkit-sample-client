@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { set, del } from 'object-path-immutable'
+import { set, del, push } from 'object-path-immutable'
 import './index.css'
 
 import { UserHeader } from './components/UserHeader'
@@ -122,7 +122,7 @@ class Main extends React.Component {
       this.state.messages[room.id] &&
         this.actions.setCursor(
           room.id,
-          Object.keys(this.state.messages[room.id]).pop()
+          this.state.messages[room.id].pop().id
         )
     },
 
@@ -194,12 +194,16 @@ class Main extends React.Component {
     // Messages
     // --------------------------------------
 
-    addMessage: payload => {
 
+    addMessage: payload => {
       const roomId = payload.room.id
       const messageId = payload.id
+
+      if(!this.state.messages.roomId) this.setState(this.state.messages.roomId = [])
+
       // Update local message cache with new message
-      this.setState(set(this.state, ['messages', roomId, messageId], payload))
+      this.setState(push(this.state, ['messages', roomId], payload))
+      
       // Update cursor if the message was read
       if (roomId === this.state.room.id) {
         const cursor = this.state.user.readCursor({ roomId }) || {}
