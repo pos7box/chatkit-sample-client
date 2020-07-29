@@ -6,7 +6,7 @@
   "dependencies": {
     "@pusher/chatkit-client": "^1.1.2",
     "@pusher/chatkit-server": "^1.0.4",
-    "auth0": "^2.14.0",
+    "auth0": "^2.27.1",
     "auth0-js": "^9.8.2",
     "gh-pages": "^2.0.1",
     "jwt-decode": "^2.2.0",
